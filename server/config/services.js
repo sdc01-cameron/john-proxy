@@ -44,21 +44,26 @@ module.exports = {
   service1: {
     api: '/products/:id',
     url: 'http://localhost:3001',
-    bundle: 'app.js',
+    bundle: 'bundle.js',
   },
   service2: {
     api: 'product/:id',
     url: 'http://localhost:3002',
-    bundle: 'app.js',
+    bundle: 'bundle.js',
   },
   service3: {
     api: '/relatedProducts/all',
     url: 'http://localhost:3003',
-    bundle: 'app.js',
+    bundle: 'bundle.js',
   },
   service4: {
     api: '/products/:id/reviews',
     url: 'http://localhost:3004',
-    bundle: 'app.js',
+    bundle: 'bundle.js',
   },
 };
+
+// 3001 - Deb service
+// 3002 - Zain service
+// 3003 - Dylan service
+// 3004 - Joe service
