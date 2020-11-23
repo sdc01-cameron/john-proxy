@@ -1,7 +1,7 @@
 body {
   display: grid;
-  grid-template-columns: 700px 750px;
-  grid-template-rows: 1150px 350px 1fr;
+  grid-template-columns: 700px 700px;
+  grid-template-rows: 1000px 350px 1fr;
 }
 
 #ImageCarouselService {
