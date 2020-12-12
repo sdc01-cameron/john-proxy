@@ -1,2 +1,3 @@
 node_modules
 *.pem
+newrelic-license-key.js

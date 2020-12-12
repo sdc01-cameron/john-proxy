@@ -1,0 +1,90 @@
+config:
+  environments:
+    staging:
+      target: "http://localhost:3000"
+      # processor: "./my-function.js"
+      tls:
+        rejectUnauthorized: false
+      phases:
+        - duration: 60
+          arrivalRate: 10
+scenarios:
+  - name: "GET Requests to john-service"
+    flow:
+      - get:
+          url: "/api/products/9999995"
+      - post:
+          url: "/api/products"
+          json:
+            name: "Maradona"
+            price: 22
+            prime: true
+            returnable: false
+            flavor: "napoli"
+            ingredients: "left foot"
+            brand: "argentina"
+            sensitivity: "cocaina"
+            ingredient_info: "talent and passion"
+            about: "boca juniors"
+            ratings_avg: 4
+      - loop:
+          - get:
+              url: "/api/products/9999999"
+        count: 100
+
+----------------------------------------------------------------------
+----------------------------------------------------------------------
+----------------------------------------------------------------------
+
+artillery run -e staging /Users/jandy/Work/sdc/john-proxy/my-script.yaml
+
+----------
+TESTS
+----------
+
+***** TEST 1: duration: 60, arrivalRate: 10, count: 100, total rps: 102 *****
+All virtual users finished
+Summary report @ 16:35:27(-0800) 2020-12-11
+  Scenarios launched:  600
+  Scenarios completed: 518
+  Requests completed:  56193
+  Mean response/sec: 212.45
+  Response time (msec):
+    min: 0.9
+    max: 43451
+    median: 369.8
+    p95: 13994.1
+    p99: 27040.8
+  Scenario counts:
+    GET Requests to john-service: 600 (100%)
+  Codes:
+    200: 54059
+    404: 598
+    500: 628
+    504: 908
+  Errors:
+    ETIMEDOUT: 82
+
+
+***** TEST 1: duration: 60, arrivalRate: 5, count: 100, total rps: 502 *****
+---- Changed the post route which was throwing an error ----
+All virtual users finished
+Summary report @ 10:54:42(-0800) 2020-12-12
+  Scenarios launched:  300
+  Scenarios completed: 284
+  Requests completed:  30222
+  Mean response/sec: 208.75
+  Response time (msec):
+    min: 2
+    max: 30375
+    median: 88
+    p95: 1117.1
+    p99: 20392.7
+  Scenario counts:
+    GET Requests to john-service: 300 (100%)
+  Codes:
+    200: 29809
+    500: 62
+    504: 351
+  Errors:
+    ETIMEDOUT: 16
